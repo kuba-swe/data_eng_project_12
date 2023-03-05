@@ -1,0 +1,13 @@
+version: '3'
+services:
+  sparkmaster:
+    image: myspark
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    command: $SPARK_HOME/sbin/start-master.sh
+  sparkwoker:
+    image: myspark
+    command: $SPARK_HOME/sbin/start-worker.sh spark://sparkmaster:7077
+    depends_on:
+      - sparkmaster
