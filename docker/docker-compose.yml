@@ -1,13 +1,13 @@
-version: '3'
+version: '3.8'
 services:
   sparkmaster:
-    image: myspark
+    build: #path to dockerfile
     ports:
       - "8080:8080"
       - "7077:7077"
     command: $SPARK_HOME/sbin/start-master.sh
   sparkwoker:
-    image: myspark
+    build: #path to docker file
     command: $SPARK_HOME/sbin/start-worker.sh spark://sparkmaster:7077
     depends_on:
       - sparkmaster
