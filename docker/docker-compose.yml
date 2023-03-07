@@ -5,9 +5,9 @@ services:
     ports:
       - "8080:8080"
       - "7077:7077"
-    command: /usr/local/spark/sbin/start-master.sh --host sparkmaster
+    command: $SPARK_HOME/sbin/start-master.sh
   sparkwoker:
     build: #path to docker file
-    command: /usr/local/spark/sbin/start-worker.sh spark://sparkmaster:7077
+    command: $SPARK_HOME/sbin/start-worker.sh spark://sparkmaster:7077
     depends_on:
       - sparkmaster
